@@ -28,7 +28,24 @@ class _NewExpenseState extends State<NewExpense> {
     final enteredAmount = double.tryParse(_amountController.text); // if the parsing fails, enteredAmount will be null
     final amountIsInvalid = enteredAmount == null || enteredAmount <= 0; // check if the entered amount is valid
 
-    if (_titleController.text.isEmpty || amountIsInvalid || _selectedDate == null) return;
+    if (_titleController.text.isEmpty || amountIsInvalid || _selectedDate == null) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Invalid input'),
+          content: const Text('Please enter a valid title, amount and date.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
   }
 
   @override // IMPORTANT: dispose the controller when the widget is removed from the widget tree
