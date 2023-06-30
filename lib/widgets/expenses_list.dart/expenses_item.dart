@@ -19,9 +19,14 @@ class ExpenseItem extends StatelessWidget {
           vertical: 10,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // each child is a row in the card
-            Text(expense.title),
+            Text(expense.title,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 16,
+                    )),
             const SizedBox(height: 4),
             // Row is a widget that displays its children in a row
             Row(
